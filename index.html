@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Datalayer tagging Helper</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+</head>
+<body>
+
+  <h1 style="margin: 2px 2px 2px 4px">Datalayer Tagging Helper</h1>
+<hr class="solid" style="border-top: 3px solid #bbb">
+<div class="container">
+<div class="container" style="margin-top:2px;margin-bottom:2px;margin-left:0px">
+<p>Datalayer helper is one ofits kind tagging aid which allows you to create all types of tagging guides with ease. It currently supports <strong>datalayer declaration</strong> and <strong>datalayer.push</strong> events with more implementation support coming out soon. No more long hours of checking the tagging guide and say ciao to tagging mistakes. Please provide your feedback <a href="mailto:anujbansal2098@gmail.com">here</a></p>
+</div>
+
+<div class="container">
+<p style="display: inline">To get started, please choose the preferred event type: </p>
+<select id ="dldropdown" name="dropdown" style="margin-bottom:8px;display: inline">
+  <option value='select'>Select Tagging Type</option>
+  <option value='declare'>Datalayer Declaration</option>
+  <option value='push'>Datalayer Push</option>
+  
+ </select> 
+</div> 
+<div class="container" id="MainContainer"></div>
+
+<div class="container">
+<button type="button" id="addMore" class="addMore datadeclare" style="display: inline;visibility:hidden">+ Add another</button>
+
+<button type="button" id="dataGenerate" onclick="generateCode()" style="display: inline;margin-top:8px;margin-bottom:8px;visibility:hidden">Generate</button>
+</div>
+<div class="container"> 
+<div id="taggingcode" style="border-color:coral;border: 2px solid; border-radius: 10px;padding: 4px; height: 100px;visibility:hidden;word-wrap: break-word">
+Here goes the tagging code
+</div>
+</div>
+<div id="datalayerdec" class="container-fluid datalayer datalayerdec" style="padding: 0 2px 2px 0;visibility:hidden">
+<div class="input-group keyvalue" style="padding: 0 2px 2px 0">
+    <input type="text" class="form-control key" id="key" placeholder="Key" style="display: inline;border: 1px solid">
+	<p style="margin-left:4px;margin-right:4px;display: inline"><b>:</b></p>
+    <input type="text" class="form-control value" id="value" placeholder="Value" style="display: inline;border: 1px solid">
+    <img id="removeIcon" src="Images\/images.jpg" alt="remove row" style="visibility:hidden">
+</div>
+</div>
+
+<div id="datalayerPush" class="container-fluid datalayer datalayerPush" style="padding: 0 2px 2px 0;visibility:hidden">
+
+<div class="input-group keyvalue" style="padding: 0 2px 2px 0">
+    <p style="height:100%;display: inline;	margin-bottom: 0px;">Enter the Event Name</p>
+	<p style="margin-left:4px;margin-right:4px;display: inline"><b>:</b></p>
+	<input type="text" class="form-control value" id="value" placeholder="Value" style="display: inline;border: 1px solid">
+	<img id="removeIcon" src="Images\/images.jpg" alt="remove row" style="visibility:hidden">
+	</div>
+	
+</div>
+</div>
+
+<script src="datalayerhelper.js"></script>
+</body>
+</html>
