@@ -346,7 +346,9 @@ function generateCode()
 	var temp = document.getElementById("MainContainer").firstElementChild;
 	
 	var dlname=document.getElementById("dlName").value;
-	//var dlname="dataLayer";
+	 if(dlname==""||dlname==undefined){
+	dlname="dataLayer";
+	 }
 	var dataLayer=[];
 	 
 	
