@@ -2,7 +2,7 @@
 
 var ecomevent="";
 var eventName="";
-
+//var partrefund=false;
 var addMore=document.getElementById('addMore');
 
 var eventparams= document.getElementById("diveventparams");
@@ -150,6 +150,7 @@ switch (value) {
                appendContent ("datalayerecommevent","partrefund");
 			   ecomevent="refund";
 			   eventName="pr-refund";
+			   //partrefund=true;
                 break;
 
         }
@@ -396,6 +397,7 @@ else if(temp.id="datalayerEcomm")
 	var object={};
 	var objtemp2={};
 	var objtemp3={};
+
 	var divprods=document.getElementById("divproducts");
 	var prods=divprods.getElementsByClassName("divproductparams");
 	//var productparams=document.querySelectorAll("#MainContainer .productparams");
@@ -409,12 +411,19 @@ else if(temp.id="datalayerEcomm")
 	
 	var value= prods[i].querySelectorAll(".productparams")[j].getElementsByClassName("value")[0].value;
 	
+	if(document.querySelector("#MainContainer #datalayerecommevent #divproducts")==null){
+		objtemp={};
+		break;
+	}
+	else{
 	//pushToobj(keyy, value);
 	objtemp[keyy] = value;
 	}
-	
+	}
+	if(Object.keys(objtemp).length != 0  && objtemp.constructor === Object){
 	dltemp.push(objtemp);
 	objtemp	={};
+	}
 }
 	
 	//objtemp["impressions"]=dataLayer;
@@ -460,14 +469,21 @@ else if(temp.id="datalayerEcomm")
 	object["actionField"]=objtemp2;	
 	}
 	
-	object["products"]=dltemp;
+	//object["products"]=dltemp;
 	
 	if(ecomevent=="impressions"){
 		objtemp3[ecomevent]=dltemp;
 	}
+	//else if(ecomevent=="checkout_option"){
+	//object["products"]=dltemp;
+	//objtemp3[ecomevent]=object;
+	//}
+	else if(dltemp.length==0){
+	objtemp3[ecomevent]=object;	
+	}
 	else{
 	object["products"]=dltemp;
-	objtemp3[ecomevent]=object;
+	objtemp3[ecomevent]=object;	
 	}
 	objtemp["ecommerce"]=objtemp3;
 }
