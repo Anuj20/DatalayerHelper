@@ -38,7 +38,7 @@ switch (value) {
 })
 
 
-//replace the main header with desired element
+//Swap the main container with the container as per dropdown choice
 function swapContent (id) {
 	
 	//let addMore=document.getElementById('addMore');
@@ -315,6 +315,7 @@ addmore.addEventListener("click", function newRow(){
 	b.innerHTML=":"
 	
 	p.setAttribute("style","margin-left:4px;margin-right:4px;display: inline");
+	p.setAttribute("class","my-auto");
 	p.appendChild(b);
 	div.appendChild(inputkey);
 	div.appendChild(p);

@@ -59,7 +59,7 @@ Here goes the tagging code
 <div id="datalayerdec" class="container-fluid datalayer datalayerdec" style="padding: 0 2px 2px 0;visibility:hidden">
 <div class="input-group keyvalue" style="padding: 0 2px 2px 0">
     <input type="text" class="form-control key" id="key" onfocus="removeerrormsg()" placeholder="Key" style="display: inline;border: 1px solid">
-	<p style="margin-left:4px;margin-right:4px;display: inline"><b>:</b></p>
+	<p class="my-auto" style="margin-left:4px;margin-right:4px;display: inline"><b>:</b></p>
     <input type="text" class="form-control value" onfocus="removeerrormsg()" id="value" placeholder="Value" style="display: inline;border: 1px solid">
 	<img id="removeIcon" onclick="removeNode()" src="Images\/images.jpg" alt="remove row" style="visibility:hidden">
 </div>
@@ -67,18 +67,18 @@ Here goes the tagging code
 
 <div id="datalayerPush" class="container-fluid datalayer datalayerPush" style="padding: 0 2px 2px 0;visibility:hidden">
 
-<div class="input-group keyvalue" style="padding: 0 2px 2px 0">
-    <label style="height:100%;display: inline;margin-bottom: 0px;vertical-align: baseline">Enter the Event Name</label>
-	<p style="margin-left:4px;margin-right:4px;display: inline;vertical-align: baseline"><b>:</b></p>
-	<input type="text" class="form-control value" id="value" onfocus="removeerrormsg()" placeholder="Value" style="display: inline;border: 1px solid"></div>
+<div class="input-group keyvalue" style="padding: 0 2px 2px 0; margin-bottom: 20px">
+    <label class="my-auto" style="height:100%;display: inline;margin-bottom: 0px;vertical-align: baseline"><strong>Enter the Event Name</strong></label>
+	<p class="my-auto" style="margin-left:4px;margin-right:4px;display: inline;vertical-align: baseline"><b>:</b></p>
+	<input type="text" class="form-control value" id="value" onfocus="removeerrormsg()" placeholder="Value" style="display: inline;border: 1px solid;max-width: 80%;border-radius: 8px;"></div>
 </div>
 
 <div id="datalayerEcomm" class="container-fluid datalayer datalayerEcomm" style="padding: 0 2px 2px 0;visibility:hidden">
 
 <div class="input-group keyvalue" style="padding: 0 2px 2px 0">
- <label style="height:100%;display: inline;margin-bottom: 0px;vertical-align: baseline">Choose the Ecommerce Event </label>
-<p style="margin-left:4px;margin-right:4px;display: inline;vertical-align: baseline"><b>:</b></p>
-<select id ="ecommdropdown" name="dropdown" onfocus="removeerrormsg()" style="margin-bottom:8px;display: inline">
+ <label class="my-auto" style="height:100%;display: inline;margin-bottom: 0px;vertical-align: baseline">Choose the Ecommerce Event </label>
+<p class="my-auto" style="margin-left:4px;margin-right:4px;display: inline;vertical-align: baseline"><b>:</b></p>
+<select class="my-auto" id ="ecommdropdown" name="dropdown" onfocus="removeerrormsg()" style="margin-bottom:8px;display: inline">
   <option value='choose'>Select</option>
   <option value='impression'>Product Impression</option>
   <option value='click'>Product Click</option>
@@ -120,7 +120,7 @@ Here goes the tagging code
 	<option>position</option>	
 	<option>coupon</option>
 	</datalist>
-	<p style="margin-left:4px;margin-right:4px;display: inline"><b>:</b></p>
+	<p class="my-auto" style="margin-left:4px;margin-right:4px;display: inline"><b>:</b></p>
     <input type="text" class="form-control value" id="value" onfocus="removeerrormsg()" placeholder="Product parameter Value" style="display: inline;border: 1px solid">
 	<img id="removeIcon" onclick="removeNode(this)" src="Images\/images.jpg" alt="remove row" style="visibility:inherit">
 </div>
@@ -132,7 +132,7 @@ Here goes the tagging code
 <p style="display: inline;">[optional]</p>
 <div class="input-group keyvalue eventparams" style="padding: 0 2px 2px 0">
     <input type="text" class="form-control key" id="key" onfocus="removeerrormsg()" placeholder="Parameter name" style="display: inline;border: 1px solid">
-	<p style="margin-left:4px;margin-right:4px;display: inline"><b>:</b></p>
+	<p class="my-auto" style="margin-left:4px;margin-right:4px;display: inline"><b>:</b></p>
     <input type="text" class="form-control value" onfocus="removeerrormsg()" id="value" placeholder="Paramater Value" style="display: inline;border: 1px solid">
 	<img id="removeIcon" onclick="removeNode(this)" src="Images\/images.jpg" alt="remove row" style="visibility:inherit">
 </div>
@@ -154,7 +154,7 @@ Here goes the tagging code
     <option>shipping</option>	
 	<option>coupon</option>	
 	</datalist>
-	<p style="margin-left:4px;margin-right:4px;display: inline"><b>:</b></p>
+	<p class="my-auto" style="margin-left:4px;margin-right:4px;display: inline"><b>:</b></p>
     <input type="text" class="form-control value" id="value" onfocus="removeerrormsg()" placeholder="Action field Value" style="display: inline;border: 1px solid">
 	<img id="removeIcon" onclick="removeNode(this)" src="Images\/images.jpg" alt="remove row" style="visibility:inherit">
 </div>
