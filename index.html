@@ -60,8 +60,13 @@ Here goes the tagging code
 <div class="input-group keyvalue" style="padding: 0 2px 2px 0">
     <input type="text" class="form-control key" id="key" onfocus="removeerrormsg()" placeholder="Key" style="display: inline;border: 1px solid">
 	<p class="my-auto" style="margin-left:4px;margin-right:4px;display: inline"><b>:</b></p>
-    <input type="text" class="form-control value" onfocus="removeerrormsg()" id="value" placeholder="Value" style="display: inline;border: 1px solid">
+	<div style="display: inline;border: 1px solid;width:50%" class="parinputvalue">
+    <input type="text" class="form-control value" onfocus="removeerrormsg()" id="value" placeholder="Value" style="border:none;display: inline;max-width:85%">
+	<span class="nestedparam" onclick="nestedparams(this)" style="display: inline;padding:4px; background-color: #efefef; float:rightwards">+ Nested</span>
+</div>
 	<img id="removeIcon" onclick="removeNode()" src="Images\/images.jpg" alt="remove row" style="visibility:hidden">
+	<br>	
+	<div class="container nestedparams" style="margin-top: 4px;  display:block;visibility:hidden;"></div>
 </div>
 </div>
 
@@ -163,6 +168,13 @@ Here goes the tagging code
 
 </div>
 
+<div class="input-group keyvaluenested" style="padding: 0 2px 2px 0;visibility: hidden;">
+    <input type="text" class="form-control keynested" id="keynested" onfocus="removeerrormsg()" placeholder="Key" style="display: inline;border-radius: 8px;border: 1px solid">
+	<p class="my-auto" style="margin-left:4px;margin-right:4px;display: inline;vertical-align: baseline"><b>:</b></p>
+	<input type="text" class="form-control valuenested" id="value" onfocus="removeerrormsg()" placeholder="Value" style="display: inline;border: 1px solid;border-radius: 8px;">
+	<img id="addrow" class="my-auto" onclick="addNode(this)" src="Images\/open.png" alt="remove row" style="visibility:inherit;width:20px;height: 20px;background-color:darkolivegreen;display:inline;margin-left: 8px;">
+	<img id="removerow" class="my-auto" onclick="removeNode(this)" src="Images\/close.jpg" alt="remove row" style="visibility:inherit;width:20px;height:5px;background-color:darkred;display: inline;margin-left: 8px;">
+</div>
 </div>
 <script src="datalayerhelper.js"></script>
 </body>

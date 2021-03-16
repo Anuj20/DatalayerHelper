@@ -2,13 +2,14 @@
 
 var ecomevent="";
 var eventName="";
+var nested="";
 //var partrefund=false;
 var addMore=document.getElementById('addMore');
 
 var eventparams= document.getElementById("diveventparams");
 var actionfieldparams= document.getElementById("divactionfieldparams");
 var prodparams=document.getElementById("divproducts");
-
+var nestedrow=document.getElementsByClassName("keyvaluenested")[0];
 
 document.getElementById("dldropdown").addEventListener("change", function(){
 var value=this.value;
@@ -269,13 +270,36 @@ function addProdParam(elem){
 	clone.getElementsByClassName("value")[0].value="";
 	parentdiv.appendChild(clone);
 }
-
+	
 function openNav() {
   document.getElementById("mySidenav").style.width = "250px";
 }
 
+function addNode(elem){
+	let main=elem.parentElement.parentElement;
+	let child=nestedrow;
+	let clone=child.cloneNode(true);
+	clone.style.visibility="visible";
+	main.appendChild(clone);
+	//if(elem.parentElement.parentElement.){}
+}
+
 function removeNode(elem){
+//	console.log(elem.parentElement.parentElement.children.length);
+	//elem.parentElement.remove();
+	//console.log(elem.parentElement.parentElement.children);
+
+	let MainContainer=document.getElementById("MainContainer").children[0];
+
+	if(elem.parentElement.parentElement.children.length==1 && MainContainer.id=="datalayerdec"){
+		elem.parentElement.parentElement.parentElement.getElementsByClassName("parinputvalue")[0].getElementsByTagName("input")[0].disabled = false;
+		elem.parentElement.parentElement.parentElement.getElementsByClassName("parinputvalue")[0].getElementsByTagName("span")[0].innerHTML="+ Nested";	
+		//elem.parentElement.parentElement.querySelector(".nestedparams").innerHTML="";
+		//nested.style.visibility="hidden";
+	}
 	elem.parentElement.remove();
+	
+	//if(elem.parentElement.parentElement.){}
 }
 
 //var datalayerclass = document.getElementById("MainContainer").firstElementChild;
@@ -284,11 +308,15 @@ addmore.addEventListener("click", function newRow(){
     var datalayerclass = document.getElementById("MainContainer").firstElementChild;
 	//alert("class name is "+datalayerclass);
 	var div = document.createElement("div");
+	var parinputdiv=document.createElement("div");
+	var nesteddiv=document.createElement("div");
 	var inputkey = document.createElement("input");
 	var inputvalue = document.createElement("input");
 	var b = document.createElement("b");
 	var p = document.createElement("p");
 	var removeicon= document.createElement("img");
+	var span=document.createElement("span");
+
 	div.classList.add("input-group","keyvalue");
 	div.style.padding="0 2px 2px 0";
 
@@ -298,13 +326,29 @@ addmore.addEventListener("click", function newRow(){
 	inputkey.setAttribute("placeholder", "Key");
 	inputkey.setAttribute("style", "display: inline;border: 1px solid");
 	inputkey.setAttribute("onfocus","removeerrormsg()");
+
+	parinputdiv.setAttribute("style","display: inline;border: 1px solid;width:50%");
+	parinputdiv.setAttribute( "class","parinputvalue");
 	
 	inputvalue.setAttribute("type", "text");	
 	inputvalue.setAttribute("class", "form-control value");
-	inputvalue.setAttribute("placeholder", "Value");
-	inputvalue.setAttribute("style", "display: inline;border: 1px solid");
 	inputvalue.setAttribute("onfocus","removeerrormsg()");
+	inputvalue.setAttribute("id","value");
+	inputvalue.setAttribute("placeholder", "Value");
+	inputvalue.setAttribute("style", "border:none;display: inline;max-width:85%");
 	
+
+	span.setAttribute("class","nestedparam");
+	span.setAttribute( "onclick","nestedparams(this)");
+	span.setAttribute("style","display: inline;padding:4px; background-color: #efefef; float:rightwards");
+	span.innerHTML="+ Nested";
+	
+	parinputdiv.appendChild(inputvalue);
+	parinputdiv.appendChild(span);
+
+	nesteddiv.setAttribute("class","container nestedparams");
+	nesteddiv.setAttribute("style","margin-top: 4px; display:block;visibility:hidden;")
+
 	removeicon.setAttribute("id","removeIcon");
 	removeicon.src="Images\/images.jpg";
 	removeicon.setAttribute("alt","remove row");
@@ -319,10 +363,49 @@ addmore.addEventListener("click", function newRow(){
 	p.appendChild(b);
 	div.appendChild(inputkey);
 	div.appendChild(p);
-	div.appendChild(inputvalue);
+	//div.appendChild(inputvalue);
+	div.appendChild(parinputdiv);
 	div.appendChild(removeicon);
+	div.appendChild(nesteddiv);
 	datalayerclass.appendChild(div);
 });
+
+//grey out nested param row
+function nestedparams(elem){
+
+	var doc = elem.parentElement.parentElement.children;
+	for (var i = 0; i < doc.length; i++) {
+		if (doc[i].className.indexOf("nestedparams")>-1) {
+			nested = doc[i];
+			//console.log(nested);
+		  break;
+		}        
+	}
+//nested = elem.parentElement.parentElement.getElementsByClassName("nestedparams")[0];
+
+if(elem.innerHTML=="+ Nested"){
+elem.parentElement.getElementsByTagName("input")[0].disabled = true;
+elem.innerHTML="- Nested";
+
+nested.style.visibility="visible";
+
+newChild= document.getElementsByClassName("keyvaluenested")[document.getElementsByClassName("keyvaluenested").length-1];
+let clone = newChild.cloneNode(true);
+clone.style.visibility="visible";
+nested.appendChild(clone);
+
+//elem.parentElement.setAttribute("background-color","darkgrey");
+	}
+else{
+	elem.parentElement.getElementsByTagName("input")[0].disabled = false;
+	elem.innerHTML="+ Nested";	
+	elem.parentElement.parentElement.querySelector(".nestedparams").innerHTML="";
+	nested.style.visibility="hidden";
+	//console.log(nested)
+	//elem.parentElement.removeAttribute("background-color");
+	//removeNode(elem);
+}
+}
 
 function clearall(){
 	var inputs=document.getElementsByTagName("input");
@@ -351,12 +434,13 @@ function generateCode()
 	dlname="dataLayer";
 	 }
 	var dataLayer=[];
-	 
+	var tempobj={};
+	var obj = {};
 	
 	function pushTodl(name, val) {
-   var obj = {};
+   
    obj[name] = val;
-   dataLayer.push(obj);
+   //dataLayer.push(obj);
 }
 
 function pushToobj(name, val) {
@@ -374,6 +458,18 @@ if(temp.id=="datalayerdec"||temp.id=="datalayerPush"){
 		keyy="event";
 	}
 	
+	if(temp.children[i].getElementsByClassName("value")[0].disabled==true){
+		var nestedtemp=temp.children[i].getElementsByClassName("nestedparams")[0].getElementsByClassName("keyvaluenested");
+		for(n=0;n<nestedtemp.length;n++){
+			var nestedkey= nestedtemp[n].getElementsByClassName("keynested")[0].value;
+			var nestedvalue= nestedtemp[n].getElementsByClassName("valuenested")[0].value;
+			tempobj[nestedkey]=nestedvalue;
+		}
+	pushTodl(keyy, tempobj);
+	tempobj={};
+	}
+
+	else{
 	var value= temp.children[i].getElementsByClassName("value")[0].value;
 	
 	if(keyy=="" || value==""){
@@ -389,7 +485,10 @@ if(temp.id=="datalayerdec"||temp.id=="datalayerPush"){
 	else{
 	pushTodl(keyy, value);
 	}
+}
+
 	}
+	dataLayer.push(obj);
 }
 
 else if(temp.id="datalayerEcomm")
@@ -495,13 +594,15 @@ else if(temp.id="datalayerEcomm")
 	
 	if(temp.className.indexOf("datalayerdec")>-1 && dataLayer.length!=0){
 		document.getElementById("jsbeautfier").style.visibility="visible";
-		var code=dlname+"="+"[{"+JSON.stringify(dataLayer).replace(/{|}|\]|\[/g,'')+"}];";
+		//var code=dlname+"="+"[{"+JSON.stringify(dataLayer).replace(/{|}|\]|\[/g,'')+"}];";
+		var code=dlname+"="+JSON.stringify(dataLayer);
 	//document.getElementById("taggingcode").innerHTML=;
 	$("#taggingcode").text(code);
 	}
 	else if(temp.className.indexOf("datalayerPush")>-1 && dataLayer.length!=0){
 		document.getElementById("jsbeautfier").style.visibility="visible";
-		var code=dlname+".push"+"({"+JSON.stringify(dataLayer).replace(/{|}|\]|\[/g,'')+"});"
+		//var code=dlname+".push"+"({"+JSON.stringify(dataLayer).replace(/{|}|\]|\[/g,'')+"});"
+		var code=dlname+".push"+"("+JSON.stringify(dataLayer).replace(/\]|\[/g,'')+")";
 	//document.getElementById("taggingcode").innerHTML=;	
 	$("#taggingcode").text(code);
 	}
