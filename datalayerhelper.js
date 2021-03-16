@@ -602,7 +602,7 @@ else if(temp.id="datalayerEcomm")
 	else if(temp.className.indexOf("datalayerPush")>-1 && dataLayer.length!=0){
 		document.getElementById("jsbeautfier").style.visibility="visible";
 		//var code=dlname+".push"+"({"+JSON.stringify(dataLayer).replace(/{|}|\]|\[/g,'')+"});"
-		var code=dlname+".push"+JSON.stringify(dataLayer);
+		var code=dlname+".push"+"("+JSON.stringify(dataLayer).replace(/\]|\[/g,'')+")";
 	//document.getElementById("taggingcode").innerHTML=;	
 	$("#taggingcode").text(code);
 	}
